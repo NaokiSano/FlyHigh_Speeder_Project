@@ -26,7 +26,7 @@ public class Clamp{
     /// <param name="_min">囲む最小値</param>
     /// <param name="_max">囲む最大値</param>
     /// <returns></returns>
-    public static float clamp(float _num, float _min, int _max)
+    public static float ClampFloat(float _num, float _min, int _max)
     {
         return Math.Min(_max, Math.Max(_min, _num));
     }

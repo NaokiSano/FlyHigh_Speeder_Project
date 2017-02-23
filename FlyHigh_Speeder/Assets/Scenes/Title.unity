@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 1108408366}
   - component: {fileID: 1108408369}
   - component: {fileID: 1108408368}
+  - component: {fileID: 1108408370}
   m_Layer: 0
   m_Name: TitleMenuManager
   m_TagString: Untagged
@@ -524,10 +525,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TitileSprites: {fileID: 489689647}
-  m_MenuSprites:
-  - {fileID: 1216946535}
-  - {fileID: 1768303339}
-  - {fileID: 77317034}
   m_MenuObjects: {fileID: 186990345}
 --- !u!4 &1108408367
 Transform:
@@ -553,6 +550,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bbe6c7595f8a1489589635d0abd133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_MenuSprites:
+  - {fileID: 1216946535}
+  - {fileID: 1768303339}
+  - {fileID: 77317034}
 --- !u!114 &1108408369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +565,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedae2d0cb9901743b4c2444c9374c91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_FadeSpeed: 0.0003
+  m_GameStartSprite: {fileID: 489689647}
+--- !u!114 &1108408370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1108408365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1df24e5048437349b311813a775207c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_DefaultAlpha: 255
 --- !u!1 &1216946533
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
@@ -12,13 +10,13 @@ public class TitleManager : MonoBehaviour {
     [SerializeField]
     private Image m_TitileSprites;
 
-    // メニュー移行後のスプライト群
-    [SerializeField]
-    private Button[] m_MenuSprites;
-
     // メニューのまとまりオブジェクト
     [SerializeField]
     private GameObject m_MenuObjects;
+
+    /* それぞれの参照 */
+    private TitleState m_TitleState;
+    private MenuState m_MenuState;
 
     // 今の画面状態
     private int m_NowState;
@@ -26,47 +24,33 @@ public class TitleManager : MonoBehaviour {
     // コントローラーが接続されているか
     private bool m_IsConnectedController;
 
-    // Use this for initialization
-    void Start () {
+
+    void Awake()
+    {    
+        /* スクリプト参照を得る */
+        m_TitleState = this.gameObject.GetComponent<TitleState>();
+        m_MenuState = this.gameObject.GetComponent<MenuState>();
+    }
+
+    void Start ()
+    {
         // コントローラー接続？
         IsConnectController();
 
         // 最初はタイトルから
         StateChange(SceneNum.TITLE_SCENE);
     }
-	
-	// Update is called once per frame
+
 	void Update () {
-        TitieControll();
+        
 	}
 
-    private void TitieControll()
-    {
-        // 今の状態がタイトル状態以外なら処理しない
-        if (m_NowState != (int)SceneNum.TITLE_SCENE) return;
-
-        // スペースキーでメニュー状態に移行
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StateChange(SceneNum.MENU_SCENE);
-
-        }
-
-        if (!m_IsConnectedController) return;
-
-        // コントローラーが接続されてればコントローラーのボタンも検知
-        if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Submit"))
-        {
-            StateChange(SceneNum.MENU_SCENE);
-        }
-
-    }
-
     /// <summary>
-    ///  今の画面状態をセットしてスプライトを切替
+    ///  今の画面状態をセットして
+    ///  スプライトやスクリプトを切替
     /// </summary>
     /// <param name="_state">ステート</param>
-    private void StateChange(SceneNum _state)
+    public void StateChange(SceneNum _state)
     {
         switch (_state)
         {
@@ -74,18 +58,24 @@ public class TitleManager : MonoBehaviour {
                 m_TitileSprites.enabled = true;
                 m_MenuObjects.SetActive(false);
                 m_NowState = (int)_state;
+
+                m_TitleState.enabled = true;
+                m_MenuState.enabled = false;
                 break;
 
             case SceneNum.MENU_SCENE:
                 m_TitileSprites.enabled = false;
                 m_MenuObjects.SetActive(true);
                 m_NowState = (int)_state;
+
+                m_TitleState.enabled = false;
+                m_MenuState.enabled = true;
                 break;
         }
     }
 
     /// <summary>
-    ///  コントローラーが接続されているか
+    ///  コントローラーが接続されているかを設定
     /// </summary>
     private void IsConnectController()
     {
@@ -101,5 +91,23 @@ public class TitleManager : MonoBehaviour {
 
         // 接続されていればtrue
         m_IsConnectedController = true;
+    }
+
+    /// <summary>
+    ///  今の画面状態を取得
+    /// </summary>
+    /// <returns></returns>
+    public int GetNowSceneState()
+    {
+        return m_NowState;
+    }
+
+    /// <summary>
+    ///  コントローラー接続がされているかを取得
+    /// </summary>
+    /// <returns></returns>
+    public bool GetIsConnectedController()
+    {
+        return m_IsConnectedController;
     }
 }
