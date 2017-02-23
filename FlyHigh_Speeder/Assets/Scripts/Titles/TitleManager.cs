@@ -14,22 +14,53 @@ public class TitleManager : MonoBehaviour {
 
     // メニュー移行後のスプライト群
     [SerializeField]
-    private Image[] m_MenuSprites;
+    private Button[] m_MenuSprites;
 
+    // メニューのまとまりオブジェクト
     [SerializeField]
     private GameObject m_MenuObjects;
 
+    // 今の画面状態
+    private int m_NowState;
+
+    // コントローラーが接続されているか
+    private bool m_IsConnectedController;
 
     // Use this for initialization
     void Start () {
+        // コントローラー接続？
+        IsConnectController();
+
         // 最初はタイトルから
-        StateChange((int)SceneNum.TITLE_SCENE);
+        StateChange(SceneNum.TITLE_SCENE);
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        TitieControll();
 	}
+
+    private void TitieControll()
+    {
+        // 今の状態がタイトル状態以外なら処理しない
+        if (m_NowState != (int)SceneNum.TITLE_SCENE) return;
+
+        // スペースキーでメニュー状態に移行
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StateChange(SceneNum.MENU_SCENE);
+
+        }
+
+        if (!m_IsConnectedController) return;
+
+        // コントローラーが接続されてればコントローラーのボタンも検知
+        if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Submit"))
+        {
+            StateChange(SceneNum.MENU_SCENE);
+        }
+
+    }
 
     /// <summary>
     ///  今の画面状態をセットしてスプライトを切替
@@ -37,11 +68,18 @@ public class TitleManager : MonoBehaviour {
     /// <param name="_state">ステート</param>
     private void StateChange(SceneNum _state)
     {
-
         switch (_state)
         {
             case SceneNum.TITLE_SCENE:
+                m_TitileSprites.enabled = true;
                 m_MenuObjects.SetActive(false);
+                m_NowState = (int)_state;
+                break;
+
+            case SceneNum.MENU_SCENE:
+                m_TitileSprites.enabled = false;
+                m_MenuObjects.SetActive(true);
+                m_NowState = (int)_state;
                 break;
         }
     }
@@ -49,15 +87,19 @@ public class TitleManager : MonoBehaviour {
     /// <summary>
     ///  コントローラーが接続されているか
     /// </summary>
-    private bool IsConnectController()
+    private void IsConnectController()
     {
         // 接続されているコントローラを取得して、
         string[] controller = Input.GetJoystickNames();
 
         // 一台もコントローラが接続されていなければfalse
-        if (controller[0] == "") return false;
+        if (controller[0] == "")
+        {
+            m_IsConnectedController = false;
+            return;
+        }
 
         // 接続されていればtrue
-        return true;
+        m_IsConnectedController = true;
     }
 }
