@@ -3,31 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 /// <summary>
 ///  タイトルメニュー処理
 /// </summary>
-public class TitleMenu : MonoBehaviour {
+public class TitleManager : MonoBehaviour {
 
-    // タイトル画面でのスプライト群
+    // タイトルのプッシュスタート
     [SerializeField]
-    private Image[] m_TitileSprites;
+    private Image m_TitileSprites;
 
     // メニュー移行後のスプライト群
     [SerializeField]
     private Image[] m_MenuSprites;
 
-    // 今の画面状態を設定
-    private enum m_ScreenState { m_TITLE_SCENE = 0,
-                               m_MENU_SCENE = 1 };
+    [SerializeField]
+    private GameObject m_MenuObjects;
 
-    private int m_NowState;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         // 最初はタイトルから
-        m_NowState = 0; 
-	}
+        StateChange((int)SceneNum.TITLE_SCENE);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,9 +32,24 @@ public class TitleMenu : MonoBehaviour {
 	}
 
     /// <summary>
+    ///  今の画面状態をセットしてスプライトを切替
+    /// </summary>
+    /// <param name="_state">ステート</param>
+    private void StateChange(SceneNum _state)
+    {
+
+        switch (_state)
+        {
+            case SceneNum.TITLE_SCENE:
+                m_MenuObjects.SetActive(false);
+                break;
+        }
+    }
+
+    /// <summary>
     ///  コントローラーが接続されているか
     /// </summary>
-    bool IsConnectController()
+    private bool IsConnectController()
     {
         // 接続されているコントローラを取得して、
         string[] controller = Input.GetJoystickNames();

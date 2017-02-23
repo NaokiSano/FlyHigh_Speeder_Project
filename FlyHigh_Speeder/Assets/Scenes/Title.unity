@@ -476,15 +476,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1108408365}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4f896a68695c5349989246946e855f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a3683d23c6cdbd459d5bddd157fea11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TitileSprites:
-  - {fileID: 489689647}
+  m_TitileSprites: {fileID: 489689647}
   m_MenuSprites:
   - {fileID: 595333229}
   - {fileID: 1657601471}
   - {fileID: 1951650124}
+  m_MenuObjects: {fileID: 186990345}
 --- !u!4 &1108408367
 Transform:
   m_ObjectHideFlags: 0
