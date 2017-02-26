@@ -50,7 +50,7 @@ public class TitleState : MonoBehaviour {
         }
 
         // コントローラー接続？
-        if (m_TitleManager.GetIsConnectedController()) return;
+        if (!m_TitleManager.GetIsConnectedController()) return;
 
         // 接続されてればコントローラーのボタンも検知
         if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Submit"))

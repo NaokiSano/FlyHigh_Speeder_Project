@@ -83,7 +83,7 @@ public class TitleManager : MonoBehaviour {
         string[] controller = Input.GetJoystickNames();
 
         // 一台もコントローラが接続されていなければfalse
-        if (controller[0] == "")
+        if (controller == null)
         {
             m_IsConnectedController = false;
             return;
