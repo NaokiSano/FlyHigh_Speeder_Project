@@ -14,8 +14,8 @@ public class TitleState : MonoBehaviour {
     private Image m_GameStartSprite;
 
     // 参照
-    TitleManager m_TitleManager;
-    Fade m_Fade;
+    private TitleManager m_TitleManager;
+    private Fade m_Fade;
 
     void Awake()
     {
@@ -30,7 +30,8 @@ public class TitleState : MonoBehaviour {
         m_Fade.FadeOutStart();
     }
 	
-	void Update () {
+	void Update ()
+    {
         TitieControll();
         m_GameStartSprite.color = new Color(255, 255, 255, m_Fade.GetAlpha());
 	}
