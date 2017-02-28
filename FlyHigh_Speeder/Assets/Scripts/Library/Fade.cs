@@ -24,11 +24,7 @@ public class Fade : MonoBehaviour{
 
     void Start()
     {
-        m_Speed = 0;
         m_Alpha = m_DefaultAlpha;
-
-        m_IsFadeIn = false;
-        m_IsFadeOut = false;
 
         m_ChangeFade = true;
     }
@@ -64,7 +60,7 @@ public class Fade : MonoBehaviour{
         if (!m_IsFadeOut) return;
 
         /* アルファ値を減らしていく */
-        float minus = m_Speed / Time.deltaTime;
+        float minus =  m_Speed / Time.deltaTime;
         m_Alpha -= minus;
         m_Alpha = Clamp.ClampFloat(m_Alpha, 0, 1);
 
@@ -113,8 +109,22 @@ public class Fade : MonoBehaviour{
         m_ChangeFade = _isActive;
     }
 
+    /// <summary>
+    ///  アルファ値取得
+    /// </summary>
+    /// <returns></returns>
     public float GetAlpha()
     {
         return m_Alpha;
+    }
+
+    /// <summary>
+    ///  ストップしてリセット
+    /// </summary>
+    public void StopAndReset()
+    {
+        m_IsFadeIn = false;
+        m_IsFadeOut = false;
+        m_Alpha = m_DefaultAlpha;
     }
 }

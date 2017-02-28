@@ -16,6 +16,7 @@ public class TitleState : MonoBehaviour {
     // 参照
     private TitleManager m_TitleManager;
     private Fade m_Fade;
+    bool m_IsController;
 
     void Awake()
     {
@@ -26,6 +27,8 @@ public class TitleState : MonoBehaviour {
 
     void Start()
     {
+        // コントローラー接続状態を取得
+       　m_IsController = m_TitleManager.GetIsConnectedController();
         m_Fade.ChangeSpeed(m_FadeSpeed);
         m_Fade.FadeOutStart();
     }
@@ -41,12 +44,10 @@ public class TitleState : MonoBehaviour {
     /// </summary>
     private void TitieControll()
     {
-        // 今の状態がタイトル状態以外なら処理しない
-        if (m_TitleManager.GetNowSceneState() != (int)SceneNum.TITLE_SCENE) return;
-
         // スペースキーでメニュー状態に移行
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            m_Fade.StopAndReset();
             m_TitleManager.StateChange(SceneNum.MENU_SCENE);
         }
 
@@ -56,13 +57,8 @@ public class TitleState : MonoBehaviour {
         // 接続されてればコントローラーのボタンも検知
         if (Input.GetButtonDown("Fire1") || Input.GetButtonDown("Submit"))
         {
+            m_Fade.StopAndReset();
             m_TitleManager.StateChange(SceneNum.MENU_SCENE);
         }
     }
-
-    private void FadeSprite()
-    {
-
-    }
-
 }

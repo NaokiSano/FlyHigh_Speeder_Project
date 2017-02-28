@@ -42,4 +42,10 @@ public class Clamp{
     {
         return Math.Min(_max, Math.Max(_min, _num));
     }
+
+
+    //public static float RapInt(float _num, float _min, float _max)
+    //{
+
+    //}
 }
