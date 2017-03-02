@@ -14,6 +14,9 @@ public class CameraZoomIn : MonoBehaviour {
     // ズームインのスピード
     [SerializeField]
     private float m_ZoomInSpeed;
+    // ズームインを増やす
+    [SerializeField]
+    private float m_SpeedUpValue;
 
     // ズームインをスタートするか
     private bool m_IsStart;
@@ -32,8 +35,11 @@ public class CameraZoomIn : MonoBehaviour {
 	void Update ()
     {
         if (!m_IsStart) return;
-
+       
         ZoomIn();
+
+        /* ズームインスピードを徐々に上げていく */
+        m_ZoomInSpeed *= m_SpeedUpValue;
 	}
 
     /// <summary>
