@@ -6,6 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class TitleManager : MonoBehaviour {
 
+    // 時機
+    [SerializeField]
+    private Transform m_PlayerPos;
+
     // タイトルのプッシュスタート
     [SerializeField]
     private Image m_TitileSprites;
@@ -26,8 +30,9 @@ public class TitleManager : MonoBehaviour {
 
 
     void Awake()
-    {    
+    {
         /* スクリプト参照を得る */
+        m_PlayerPos = m_PlayerPos.transform;
         m_TitleState = this.gameObject.GetComponent<TitleState>();
         m_MenuState = this.gameObject.GetComponent<MenuState>();
     }
@@ -42,7 +47,7 @@ public class TitleManager : MonoBehaviour {
     }
 
 	void Update () {
-        
+        //m_PlayerPos.position += new Vector3(0, 0, 0.5f);
 	}
 
     /// <summary>
