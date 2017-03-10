@@ -9,17 +9,17 @@ public class CameraZoomIn : MonoBehaviour {
 
     // カメラ
     [SerializeField]
-    private Transform m_CameraPos;
+    Transform m_CameraPos;
 
     // ズームインのスピード
     [SerializeField]
-    private float m_ZoomInSpeed;
+    float m_ZoomInSpeed;
     // ズームインを増やす
     [SerializeField]
-    private float m_SpeedUpValue;
+    float m_SpeedUpValue;
 
     // ズームインをスタートするか
-    private bool m_IsStart;
+    bool m_IsStart;
 
     void Awake()
     {

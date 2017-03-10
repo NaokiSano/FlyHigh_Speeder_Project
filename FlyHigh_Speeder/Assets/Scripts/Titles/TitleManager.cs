@@ -8,25 +8,25 @@ public class TitleManager : MonoBehaviour {
 
     // 時機
     [SerializeField]
-    private Transform m_PlayerPos;
+    Transform m_PlayerPos;
 
     // タイトルのプッシュスタート
     [SerializeField]
-    private Image m_TitileSprites;
+    Image m_TitileSprites;
 
     // メニューのまとまりオブジェクト
     [SerializeField]
-    private GameObject m_MenuObjects;
+    GameObject m_MenuObjects;
 
     /* それぞれの参照 */
-    private TitleState m_TitleState;
-    private MenuState m_MenuState;
+    TitleState m_TitleState;
+    MenuState m_MenuState;
 
     // 今の画面状態
-    private int m_NowState;
+    int m_NowState;
 
     // コントローラーが接続されているか
-    private bool m_IsConnectedController;
+    bool m_IsConnectedController;
 
 
     void Awake()
@@ -82,7 +82,7 @@ public class TitleManager : MonoBehaviour {
     /// <summary>
     ///  コントローラーが接続されているかを設定
     /// </summary>
-    private void IsConnectController()
+    void IsConnectController()
     {
         // 接続されているコントローラを取得して、
         string[] controller = Input.GetJoystickNames();

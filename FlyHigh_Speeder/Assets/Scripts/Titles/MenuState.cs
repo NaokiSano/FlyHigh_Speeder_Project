@@ -37,7 +37,8 @@ public class MenuState : MonoBehaviour {
         }
     }
 
-    void Start () {
+    void Start ()
+    {
         // コントローラー接続状態を取得
         m_IsController = m_TitleManager.GetIsConnectedController();
 
@@ -45,7 +46,8 @@ public class MenuState : MonoBehaviour {
         m_IsAxis = true;
 	}
 
-	void Update () {
+	void Update ()
+    {
         SelectItems();
         ButtonHighLight();
     }
@@ -91,7 +93,7 @@ public class MenuState : MonoBehaviour {
     /// <summary>
     ///  今選択状態にあるボタンをハイライト
     /// </summary>
-    private void ButtonHighLight()
+    void ButtonHighLight()
     {
         m_MenuButtons[m_SelectNum].Select();
     }

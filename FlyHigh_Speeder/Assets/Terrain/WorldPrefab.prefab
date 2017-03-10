@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4480561832194958}
   - component: {fileID: 218462198412665888}
   - component: {fileID: 154156696432204994}
-  - component: {fileID: 114171127014440942}
   m_Layer: 0
   m_Name: WorldPrefab
   m_TagString: Untagged
@@ -36,24 +35,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1094887008149768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1000, y: -35, z: 0}
+  m_LocalPosition: {x: -1000, y: -35, z: -483}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114171127014440942
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1094887008149768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d679c2d41bce7944ea94090e3ff99692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -1
 --- !u!154 &154156696432204994
 TerrainCollider:
   m_ObjectHideFlags: 1
