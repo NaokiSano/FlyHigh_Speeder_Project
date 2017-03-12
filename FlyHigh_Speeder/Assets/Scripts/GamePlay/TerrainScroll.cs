@@ -74,7 +74,6 @@ public class TerrainScroll : MonoBehaviour {
         // ワールド全部
         for (int i = 0; i < m_World.Length; i++)
         {
-            Debug.Log(m_World[i].transform.position.z);
             // リミットまでリターン
             if (m_World[i].transform.position.z >= m_LimitPosZ) return;
 

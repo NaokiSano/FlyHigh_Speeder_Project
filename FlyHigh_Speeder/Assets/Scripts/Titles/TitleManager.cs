@@ -6,16 +6,15 @@ using UnityEngine.UI;
 /// </summary>
 public class TitleManager : MonoBehaviour {
 
-    // 時機
-    [SerializeField]
+    [SerializeField, Header("自機")]
     Transform m_PlayerPos;
 
     // タイトルのプッシュスタート
-    [SerializeField]
+    [SerializeField, Header("Push Startのスプライト")]
     Image m_TitileSprites;
 
     // メニューのまとまりオブジェクト
-    [SerializeField]
+    [SerializeField, Header("メニュー項目の親オブジェクト")]
     GameObject m_MenuObjects;
 
     /* それぞれの参照 */

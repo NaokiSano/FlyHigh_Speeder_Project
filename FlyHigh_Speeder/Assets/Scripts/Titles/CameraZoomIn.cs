@@ -8,14 +8,14 @@ using UnityEngine;
 public class CameraZoomIn : MonoBehaviour {
 
     // カメラ
-    [SerializeField]
+    [SerializeField, Header("カメラ")]
     Transform m_CameraPos;
 
     // ズームインのスピード
-    [SerializeField]
+    [SerializeField, Header("ズームインのスピード")]
     float m_ZoomInSpeed;
     // ズームインを増やす
-    [SerializeField]
+    [SerializeField, Header("ズームインスピードの増量値")]
     float m_SpeedUpValue;
 
     // ズームインをスタートするか

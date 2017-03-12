@@ -2,28 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 ///  メニュー状態の処理
 /// </summary>
 public class MenuState : MonoBehaviour {
 
-    /* メニュー移行後の画像とボタン群 */
-    [SerializeField]
-    private GameObject[] m_MenuItems;
-    private Image[] m_MenuSprites;
-    private Button[] m_MenuButtons;
+    [SerializeField, Header("メニュー移行後の画像とボタン群")]
+    GameObject[] m_MenuItems;
+    Image[] m_MenuSprites;
+    Button[] m_MenuButtons;
 
-    private CameraZoomIn m_CameraZoomIn;
-    private TitleManager m_TitleManager;
-    private int m_SelectNum;
-    private bool m_IsController, m_IsAxis;
+    [SerializeField, Header("フェードアウトの白画像")]
+    Image m_WhiteSprite;
+    Color m_FadeColor;
+
+    // 参照
+    CameraZoomIn m_CameraZoomIn;
+    TitleManager m_TitleManager;
+    Fade m_Fade;
+
+    // 選択状態にあるボタン数字
+    int m_SelectNum;
+    // コントローラーの状態
+    bool m_IsController, m_IsAxis;
+    // フェードアウトフラグ
+    bool m_IsFade;
 
     void Awake()
     {
         // 参照
         m_TitleManager = this.GetComponent<TitleManager>();
         m_CameraZoomIn = this.GetComponent<CameraZoomIn>();
+        m_Fade = this.GetComponent<Fade>();
 
         // メニューの項目数に合わせて作る
         m_MenuSprites = new Image[m_MenuItems.Length];
@@ -44,12 +56,18 @@ public class MenuState : MonoBehaviour {
 
         m_SelectNum = 0;
         m_IsAxis = true;
+
+        // 白状態
+        m_FadeColor = new Color(255, 255, 255, 0);
+  
+        m_IsFade = false;
 	}
 
 	void Update ()
     {
         SelectItems();
         ButtonHighLight();
+        FadeIn();
     }
 
     // 項目のセレクト
@@ -89,6 +107,23 @@ public class MenuState : MonoBehaviour {
         if (m_SelectNum >= 2) m_SelectNum = 2;
         else if (m_SelectNum <= 0) m_SelectNum = 0;
     }
+    
+    /// <summary>
+    ///  フェードアウト
+    /// </summary>
+    void FadeIn()
+    {
+        if (!m_IsFade) return;
+        /* アルファ値をゲット、それをスプライトにセット */
+        m_FadeColor.a = m_Fade.GetAlpha();
+        m_WhiteSprite.color = m_FadeColor;
+        Debug.Log(m_FadeColor.a);
+        if (m_FadeColor.a >= 1)
+        {
+            /* 画像のフェードイン完了後、シーン遷移 */
+            SceneManager.LoadScene("GamePlay");
+        }
+    }
 
     /// <summary>
     ///  今選択状態にあるボタンをハイライト
@@ -98,9 +133,21 @@ public class MenuState : MonoBehaviour {
         m_MenuButtons[m_SelectNum].Select();
     }
 
-    public void PushButton()
+    public void GameStart()
     {
         m_CameraZoomIn.ZoomInStart();
     }
 
+    /// <summary>
+    ///  フェードアウト開始
+    /// </summary>
+    public void FadeOutMenu()
+    {
+        m_IsFade = true;
+        m_Fade.SetDefaultAlpha(0);
+        m_Fade.StopAndReset();
+        m_Fade.IsFadeChange(false);
+        m_Fade.ChangeSpeed(0.0004f);
+        m_Fade.FadeInStart();
+    }
 }

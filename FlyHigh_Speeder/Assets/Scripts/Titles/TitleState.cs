@@ -8,14 +8,14 @@ using UnityEngine.UI;
 /// </summary>
 public class TitleState : MonoBehaviour {
 
-    [SerializeField]
-    private float m_FadeSpeed;
-    [SerializeField]
-    private Image m_GameStartSprite;
+    [SerializeField, Header("フェードアウト速度")]
+    float m_FadeSpeed;
+    [SerializeField, Header("ゲームスタートのスプライト")]
+    Image m_GameStartSprite;
 
     // 参照
-    private TitleManager m_TitleManager;
-    private Fade m_Fade;
+    TitleManager m_TitleManager;
+    Fade m_Fade;
     bool m_IsController;
 
     void Awake()
@@ -42,7 +42,7 @@ public class TitleState : MonoBehaviour {
     /// <summary>
     ///  タイトル状態のときの遷移処理
     /// </summary>
-    private void TitieControll()
+    void TitieControll()
     {
         // スペースキーでメニュー状態に移行
         if (Input.GetKeyDown(KeyCode.Space))

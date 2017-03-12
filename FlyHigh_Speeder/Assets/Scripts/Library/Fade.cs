@@ -5,22 +5,21 @@ using UnityEngine.UI;
 
 public class Fade : MonoBehaviour{
 
-    // デフォルトアルファ値
-    [SerializeField]
-    private float m_DefaultAlpha;
+    [SerializeField, Header("デフォルトのアルファ値")]
+    float m_DefaultAlpha;
 
     // フェードのスピード
-    private float m_Speed;
+    float m_Speed;
     // アルファ値
-    private float m_Alpha;
+    float m_Alpha;
 
     //フェードインしているか？
-    private bool m_IsFadeIn;
+    bool m_IsFadeIn;
     //フェードアウトしているか？
-    private bool m_IsFadeOut;
+    bool m_IsFadeOut;
 
     // フェードを利用した点滅系処理用フラグ
-    private bool m_ChangeFade;
+    bool m_ChangeFade;
 
     void Start()
     {
@@ -36,7 +35,7 @@ public class Fade : MonoBehaviour{
     }
 
     // フェードイン
-    private void FadeIn()
+    void FadeIn()
     {
         if (!m_IsFadeIn) return;
 
@@ -55,7 +54,7 @@ public class Fade : MonoBehaviour{
     }
 
     // フェードアウト
-    private void FadeOut()
+    void FadeOut()
     {
         if (!m_IsFadeOut) return;
 
@@ -126,5 +125,14 @@ public class Fade : MonoBehaviour{
         m_IsFadeIn = false;
         m_IsFadeOut = false;
         m_Alpha = m_DefaultAlpha;
+    }
+
+    /// <summary>
+    ///  アルファ値のデフォルト値をセット
+    /// </summary>
+    /// <param name="_num">セットする値</param>
+    public void SetDefaultAlpha(int _num)
+    {
+        m_DefaultAlpha = _num;
     }
 }
