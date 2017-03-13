@@ -28,13 +28,11 @@ public class GameSceneFade : MonoBehaviour {
 
 	void Start ()
     {
-        m_Fade.IsFadeChange(false);
-        m_Fade.FadeOutStart();
+        SceneBeginFade();
     }
 
 	void Update ()
     {
-        Debug.Log(m_Fade.GetAlpha());
         SetAlpha();
 	}
 
@@ -44,8 +42,7 @@ public class GameSceneFade : MonoBehaviour {
     void SceneBeginFade()
     {
         m_IsActive = true;
-        m_FadeColor = new Color(255, 255, 255, 255);
-        m_Fade.IsFadeChange(false);
+        m_FadeColor = new Color(255, 255, 255, 1);
         m_Fade.ChangeSpeed(m_FadeSpeed);
         m_Fade.FadeOutStart();
     }
@@ -55,9 +52,9 @@ public class GameSceneFade : MonoBehaviour {
     /// </summary>
     void SetAlpha()
     {
-        if (!m_IsActive && m_FadeColor.a >= 1) return;
-
+        if (!m_IsActive) return;
         m_FadeColor.a = m_Fade.GetAlpha();
         m_WhiteImage.color = m_FadeColor;
+        m_Fade.IsFadeChange(false);
     }
 }

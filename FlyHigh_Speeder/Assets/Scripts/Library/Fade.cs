@@ -30,6 +30,7 @@ public class Fade : MonoBehaviour{
 
     void Update()
     {
+        Debug.Log(m_ChangeFade);
         FadeIn();
         FadeOut();
     }

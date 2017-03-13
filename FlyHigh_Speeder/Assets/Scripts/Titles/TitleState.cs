@@ -30,6 +30,7 @@ public class TitleState : MonoBehaviour {
         // コントローラー接続状態を取得
        　m_IsController = m_TitleManager.GetIsConnectedController();
         m_Fade.ChangeSpeed(m_FadeSpeed);
+        m_Fade.IsFadeChange(true);
         m_Fade.FadeOutStart();
     }
 	

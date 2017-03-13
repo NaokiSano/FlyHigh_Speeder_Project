@@ -506,8 +506,8 @@ GameObject:
   - component: {fileID: 1600473783}
   - component: {fileID: 1600473786}
   - component: {fileID: 1600473785}
-  - component: {fileID: 1600473788}
   - component: {fileID: 1600473787}
+  - component: {fileID: 1600473788}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
