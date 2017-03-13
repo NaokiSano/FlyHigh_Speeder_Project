@@ -20,12 +20,13 @@ public class TitleManager : MonoBehaviour {
     /* それぞれの参照 */
     TitleState m_TitleState;
     MenuState m_MenuState;
+    IsConnectedController m_IsConnectedController;
 
     // 今の画面状態
     int m_NowState;
 
     // コントローラーが接続されているか
-    bool m_IsConnectedController;
+    bool m_IsConnected;
 
 
     void Awake()
@@ -34,12 +35,13 @@ public class TitleManager : MonoBehaviour {
         m_PlayerPos = m_PlayerPos.transform;
         m_TitleState = this.gameObject.GetComponent<TitleState>();
         m_MenuState = this.gameObject.GetComponent<MenuState>();
+        m_IsConnectedController = this.GetComponent<IsConnectedController>();
     }
 
     void Start ()
     {
         // コントローラー接続？
-        IsConnectController();
+        m_IsConnected = m_IsConnectedController.GetIsConnectedController();
 
         // 最初はタイトルから
         StateChange(SceneNum.TITLE_SCENE);
@@ -79,25 +81,6 @@ public class TitleManager : MonoBehaviour {
     }
 
     /// <summary>
-    ///  コントローラーが接続されているかを設定
-    /// </summary>
-    void IsConnectController()
-    {
-        // 接続されているコントローラを取得して、
-        string[] controller = Input.GetJoystickNames();
-
-        // 一台もコントローラが接続されていなければfalse
-        if (controller == null)
-        {
-            m_IsConnectedController = false;
-            return;
-        }
-
-        // 接続されていればtrue
-        m_IsConnectedController = true;
-    }
-
-    /// <summary>
     ///  今の画面状態を取得
     /// </summary>
     /// <returns></returns>
@@ -107,11 +90,11 @@ public class TitleManager : MonoBehaviour {
     }
 
     /// <summary>
-    ///  コントローラー接続がされているかを取得
+    ///  コントローラー接続がされているかを渡す
     /// </summary>
     /// <returns></returns>
     public bool GetIsConnectedController()
     {
-        return m_IsConnectedController;
+        return m_IsConnected;
     }
 }

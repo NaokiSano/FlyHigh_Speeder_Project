@@ -117,7 +117,6 @@ public class MenuState : MonoBehaviour {
         /* アルファ値をゲット、それをスプライトにセット */
         m_FadeColor.a = m_Fade.GetAlpha();
         m_WhiteSprite.color = m_FadeColor;
-        Debug.Log(m_FadeColor.a);
         if (m_FadeColor.a >= 1)
         {
             /* 画像のフェードイン完了後、シーン遷移 */
@@ -149,5 +148,10 @@ public class MenuState : MonoBehaviour {
         m_Fade.IsFadeChange(false);
         m_Fade.ChangeSpeed(0.0004f);
         m_Fade.FadeInStart();
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
