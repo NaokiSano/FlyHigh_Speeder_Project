@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DefaultAlpha: 255
+  m_ChangeFade: 1
 --- !u!114 &1108408371
 MonoBehaviour:
   m_ObjectHideFlags: 0

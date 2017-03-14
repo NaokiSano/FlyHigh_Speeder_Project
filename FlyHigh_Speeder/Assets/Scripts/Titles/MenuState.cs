@@ -144,7 +144,7 @@ public class MenuState : MonoBehaviour {
     {
         m_IsFade = true;
         m_Fade.SetDefaultAlpha(0);
-        m_Fade.StopAndReset();
+        m_Fade.ResetAlpha();
         m_Fade.IsFadeChange(false);
         m_Fade.ChangeSpeed(0.0004f);
         m_Fade.FadeInStart();

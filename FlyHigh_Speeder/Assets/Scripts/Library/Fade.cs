@@ -7,6 +7,8 @@ public class Fade : MonoBehaviour{
 
     [SerializeField, Header("デフォルトのアルファ値")]
     float m_DefaultAlpha;
+    [SerializeField, Header("点滅っぽくするか")]
+    bool m_ChangeFade;
 
     // フェードのスピード
     float m_Speed;
@@ -18,8 +20,6 @@ public class Fade : MonoBehaviour{
     //フェードアウトしているか？
     bool m_IsFadeOut;
 
-    // フェードを利用した点滅系処理用フラグ
-    bool m_ChangeFade;
 
     void Start()
     {
@@ -30,7 +30,6 @@ public class Fade : MonoBehaviour{
 
     void Update()
     {
-        Debug.Log(m_ChangeFade);
         FadeIn();
         FadeOut();
     }
@@ -119,12 +118,29 @@ public class Fade : MonoBehaviour{
     }
 
     /// <summary>
-    ///  ストップしてリセット
+    ///  ストップしてアルファ値リセット
     /// </summary>
     public void StopAndReset()
     {
         m_IsFadeIn = false;
         m_IsFadeOut = false;
+        m_Alpha = m_DefaultAlpha;
+    }
+
+    /// <summary>
+    ///  ストップ
+    /// </summary>
+    public void Stop()
+    {
+        m_IsFadeIn = false;
+        m_IsFadeOut = false;
+    }
+
+    /// <summary>
+    ///  アルファ値リセット
+    /// </summary>
+    public void ResetAlpha()
+    {
         m_Alpha = m_DefaultAlpha;
     }
 
