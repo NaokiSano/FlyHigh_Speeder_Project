@@ -30,6 +30,12 @@ public class PlayerModelController : MonoBehaviour
         if (!m_ControllStatus) return;
     }
 
+    void Controll()
+    {
+
+
+    }
+
     bool IsEnableControll()
     {
         m_ControllStatus = m_GamePlayManager.IsEnableControll();

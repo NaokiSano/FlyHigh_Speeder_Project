@@ -41,7 +41,7 @@ public class GameSceneFade : MonoBehaviour {
 	void Update ()
     {
         SetAlpha();
-	}
+    }
 
     /// <summary>
     ///  シーン開始時の演出
@@ -77,8 +77,9 @@ public class GameSceneFade : MonoBehaviour {
         }
         else
         {
-            SetFadeStatusToGM();
             m_IsFadeEnd = false;
+            SetFadeStatusToGM();
+            m_WhiteImage.gameObject.SetActive(false);
         }
     }
 

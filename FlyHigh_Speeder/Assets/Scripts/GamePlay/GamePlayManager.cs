@@ -22,11 +22,15 @@ public class GamePlayManager : MonoBehaviour
     /* 参照 */
     IsConnectedController m_IsConnectedController;
     GameSceneFade m_GameSceneFade;
+    GameTutorial m_GameTutorial;
+    [SerializeField, Header("プレイヤー操作スクリプト")]
+    PlayerModelController m_PlayerControll;
 
     void Awake()
     {
         m_IsConnectedController = this.GetComponent<IsConnectedController>();
         m_GameSceneFade = this.GetComponent<GameSceneFade>();
+        m_GameTutorial = this.GetComponent<GameTutorial>();
     }
 
     void Start()
@@ -43,6 +47,8 @@ public class GamePlayManager : MonoBehaviour
     {
         
     }
+
+
 
     /// <summary>
     ///  コントローラーの接続状態をセット
@@ -64,7 +70,25 @@ public class GamePlayManager : MonoBehaviour
     /// <param name="_flag"></param>
     public void SetFadeStatus(bool _flag)
     {
+        // フェード中はtrue
         m_IsEnableControll = m_FadeStatus = _flag;
+    }
+
+    /// <summary>
+    ///  チュートリアルフラグセット
+    /// </summary>
+    /// <param name="_answer"></param>
+    public void SetIsTutorial(bool _answer)
+    {
+        // 操作可能にする
+        m_PlayerControll.enabled = true;
+
+        // 受けるか否かを判断、それぞれの処理へ
+        m_IsTutorial = _answer;
+        if (m_IsTutorial)
+        {
+            m_GameTutorial.enabled = true;
+        }
     }
 
     /// <summary>
