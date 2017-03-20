@@ -32,11 +32,13 @@ public class GamePlayManager : MonoBehaviour
         m_IsConnectedController = this.GetComponent<IsConnectedController>();
         m_GameSceneFade = this.GetComponent<GameSceneFade>();
         m_GameTutorial = this.GetComponent<GameTutorial>();
+        m_ButtonSystem = this.GetComponent<ButtonSystem>();
     }
 
     void Start()
     {
         SetIsConnectedController();
+        m_ButtonSystem.SetIsConnectedController(m_IsConnect);
 
         // シーンはフェードインから始まるのでtrue
         m_FadeStatus = true;

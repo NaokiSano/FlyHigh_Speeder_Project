@@ -10,7 +10,7 @@ public class IsConnectedController : MonoBehaviour {
     // コントローラーフラグ
     bool m_IsConnectedController;
 
-    void Start()
+    void Awake()
     {
         IsConnectController();
     }

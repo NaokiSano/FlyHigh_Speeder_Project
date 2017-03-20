@@ -53,7 +53,6 @@ public class MenuState : MonoBehaviour {
     {
         // コントローラー接続状態を取得
         m_IsController = m_TitleManager.GetIsConnectedController();
-
         m_SelectNum = 0;
         m_IsAxis = true;
 

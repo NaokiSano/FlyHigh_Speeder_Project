@@ -42,7 +42,6 @@ public class TitleManager : MonoBehaviour {
     {
         // コントローラー接続？
         m_IsConnected = m_IsConnectedController.GetIsConnectedController();
-
         // 最初はタイトルから
         StateChange(SceneNum.TITLE_SCENE);
     }

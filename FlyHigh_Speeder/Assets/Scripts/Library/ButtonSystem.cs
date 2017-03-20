@@ -55,7 +55,7 @@ public class ButtonSystem : MonoBehaviour {
     }
 
     /// <summary>
-    ///  
+    ///  コントローラーの接続状態をセット
     /// </summary>
     public void SetIsConnectedController(bool _flag)
     {

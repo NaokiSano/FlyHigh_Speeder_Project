@@ -7,11 +7,30 @@ public class TutorialFlag : MonoBehaviour {
 
     [SerializeField, Header("ゲームプレイマネージャー")]
     GamePlayManager m_GamePlayManager;
+    ButtonSystem m_ButtonSystem;
+
+    void Awake()
+    {
+        m_ButtonSystem = m_GamePlayManager.gameObject.GetComponent<ButtonSystem>();
+    }
+
+    // ボタン内処理
+    public void Push()
+    {
+        if(m_ButtonSystem.GetNowSelectButton() == 1)
+        {
+            AnswerYes();
+        }
+        else
+        {
+            AnswerNo();
+        }
+    }
 
     /// <summary>
     ///  受ける
     /// </summary>
-    public void AnswerYes()
+    void AnswerYes()
     {
         m_GamePlayManager.SetIsTutorial(true);
         this.gameObject.SetActive(false);
@@ -20,8 +39,9 @@ public class TutorialFlag : MonoBehaviour {
     /// <summary>
     ///  受けない
     /// </summary>
-    public void AnswerNo()
+    void AnswerNo()
     {
-
+        m_GamePlayManager.SetIsTutorial(false);
+        this.gameObject.SetActive(false);
     }
 }
