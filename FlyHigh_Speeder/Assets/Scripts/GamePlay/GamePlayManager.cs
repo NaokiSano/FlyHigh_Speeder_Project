@@ -23,6 +23,7 @@ public class GamePlayManager : MonoBehaviour
     IsConnectedController m_IsConnectedController;
     GameSceneFade m_GameSceneFade;
     GameTutorial m_GameTutorial;
+    ButtonSystem m_ButtonSystem;
     [SerializeField, Header("プレイヤー操作スクリプト")]
     PlayerModelController m_PlayerControll;
 
@@ -35,7 +36,6 @@ public class GamePlayManager : MonoBehaviour
 
     void Start()
     {
-        m_IsConnect = false;
         SetIsConnectedController();
 
         // シーンはフェードインから始まるのでtrue
