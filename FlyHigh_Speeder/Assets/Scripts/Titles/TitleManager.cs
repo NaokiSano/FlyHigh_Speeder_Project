@@ -36,6 +36,7 @@ public class TitleManager : MonoBehaviour {
         m_TitleState = this.gameObject.GetComponent<TitleState>();
         m_MenuState = this.gameObject.GetComponent<MenuState>();
         m_IsConnectedController = this.GetComponent<IsConnectedController>();
+  
     }
 
     void Start ()
@@ -45,10 +46,6 @@ public class TitleManager : MonoBehaviour {
         // 最初はタイトルから
         StateChange(SceneNum.TITLE_SCENE);
     }
-
-	void Update () {
-        //m_PlayerPos.position += new Vector3(0, 0, 0.5f);
-	}
 
     /// <summary>
     ///  今の画面状態をセットして

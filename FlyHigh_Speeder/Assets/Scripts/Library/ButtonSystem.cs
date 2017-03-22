@@ -31,16 +31,20 @@ public class ButtonSystem : MonoBehaviour {
             m_Buttons[i] = m_ButtonObjects[i].GetComponent<Button>();
             m_Sprites[i] = m_ButtonObjects[i].GetComponent<Image>();
         }
-
     }
 
-	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         m_SelectNum = 0;
+
 	}
 	
-	// Update is called once per frame
-	void Update () {
+    /// <summary>
+    ///  ボタンアップデート処理
+    ///  これを使用先で呼び出す
+    /// </summary>
+	public void ButtonUpdate ()
+    {
         SelectButtons();
         ButtonHighLight();
 	}
@@ -99,10 +103,16 @@ public class ButtonSystem : MonoBehaviour {
             if (joy == 0) m_IsAxis = true;
         }
 
-        if (m_SelectNum >= m_ButtonObjects.Length) m_SelectNum = m_ButtonObjects.Length-1;
+        if (m_SelectNum >= m_ButtonObjects.Length)
+        {
+            m_SelectNum = m_ButtonObjects.Length - 1;
+        }
         else if (m_SelectNum <= 0) m_SelectNum = 0;
     }
 
+    /// <summary>
+    ///  ボタンのハイライト
+    /// </summary>
     void ButtonHighLight()
     {
         m_Buttons[m_SelectNum].Select();
