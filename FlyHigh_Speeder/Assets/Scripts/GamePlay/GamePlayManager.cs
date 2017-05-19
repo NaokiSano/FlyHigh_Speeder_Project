@@ -38,7 +38,7 @@ public class GamePlayManager : MonoBehaviour
     void Start()
     {
         SetIsConnectedController();
-        m_ButtonSystem.SetIsConnectedController(m_IsConnect);
+        //m_ButtonSystem.SetIsConnectedController(m_IsConnect); //不要だった
 
         // シーンはフェードインから始まるのでtrue
         m_FadeStatus = true;

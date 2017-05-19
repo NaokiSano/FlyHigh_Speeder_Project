@@ -16,7 +16,7 @@ public class TutorialFlag : MonoBehaviour {
 
     void Start()
     {
-        //m_ButtonSystem.SetButtonNumZero();
+
     }
 
     void Update()
