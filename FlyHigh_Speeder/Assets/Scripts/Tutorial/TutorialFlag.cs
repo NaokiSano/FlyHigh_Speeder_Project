@@ -14,6 +14,16 @@ public class TutorialFlag : MonoBehaviour {
         m_ButtonSystem = m_GamePlayManager.gameObject.GetComponent<ButtonSystem>();
     }
 
+    void Start()
+    {
+        //m_ButtonSystem.SetButtonNumZero();
+    }
+
+    void Update()
+    {
+        m_ButtonSystem.ButtonUpdate();
+    }
+
     // ボタン内処理
     public void Push()
     {

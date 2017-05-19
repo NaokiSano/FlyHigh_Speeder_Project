@@ -36,7 +36,6 @@ public class ButtonSystem : MonoBehaviour {
 	void Start ()
     {
         m_SelectNum = 0;
-
 	}
 	
     /// <summary>
@@ -47,12 +46,13 @@ public class ButtonSystem : MonoBehaviour {
     {
         SelectButtons();
         ButtonHighLight();
+        Debug.Log(m_SelectNum);
 	}
 
     /// <summary>
-    ///  ボタン番号
+    ///  ボタン番号取得
     /// </summary>
-    /// <returns></returns>
+    /// <returns>ボタン番号</returns>
     public int GetNowSelectButton()
     {
         return m_SelectNum;
@@ -84,7 +84,7 @@ public class ButtonSystem : MonoBehaviour {
         /* スティックの傾いた方に選択移動 */
         if (!m_IsController)
         {
-
+            // スティックの傾き
             float joy = Input.GetAxis("Vertical2");
 
             if (joy < 0 && m_IsAxis)
@@ -103,6 +103,7 @@ public class ButtonSystem : MonoBehaviour {
             if (joy == 0) m_IsAxis = true;
         }
 
+        /* ボタンの数に選択番号を制限する */
         if (m_SelectNum >= m_ButtonObjects.Length)
         {
             m_SelectNum = m_ButtonObjects.Length - 1;
@@ -116,5 +117,13 @@ public class ButtonSystem : MonoBehaviour {
     void ButtonHighLight()
     {
         m_Buttons[m_SelectNum].Select();
+    }
+
+    /// <summary>
+    ///  ボタン番号を0に初期化
+    /// </summary>
+    public void SetButtonNumZero()
+    {
+        m_SelectNum = 0;
     }
 }

@@ -19,10 +19,9 @@ public class MenuState : MonoBehaviour {
     Fade m_Fade;
     ButtonSystem m_ButtonSystem;
 
-    // コントローラーの状態
-    bool m_IsController, m_IsAxis;
     // フェードアウトフラグ
     bool m_IsFade;
+    bool m_IsNext;
 
     void Awake()
     {
@@ -35,14 +34,11 @@ public class MenuState : MonoBehaviour {
 
     void Start ()
     {
-        // コントローラー接続状態を取得
-        m_IsController = m_TitleManager.GetIsConnectedController();
-        m_IsAxis = true;
-
         // 白状態
         m_FadeColor = new Color(255, 255, 255, 0);
   
         m_IsFade = false;
+        m_IsNext = false;
 	}
 
 	void Update ()
@@ -62,20 +58,40 @@ public class MenuState : MonoBehaviour {
         m_WhiteSprite.color = m_FadeColor;
         if (m_FadeColor.a >= 1)
         {
+            m_IsNext = true;
             /* 画像のフェードイン完了後、シーン遷移 */
-            SceneManager.LoadScene("GamePlay");
+            //SceneManager.LoadScene("GamePlay");
         }
+
+        // フェードアウトが終了していない場合は遷移しない
+        if (!m_IsNext) return;
+
+        /* ボタン番号に対応するシーンに飛ぶ */
+        if (IsSelectScene() == 0) SceneManager.LoadScene("GamePlay");
+        else if (IsSelectScene() == 1) SceneManager.LoadScene("Credit");
     }
 
-    public void GameStart()
+    /// <summary>
+    ///  シーン遷移開始
+    /// </summary>
+    public void StartScene()
     {
         m_CameraZoomIn.ZoomInStart();
+        FadeOutMenu();
+    }
+
+    /// <summary>
+    ///  ボタン番号によるシーンの決定
+    /// </summary>
+    int IsSelectScene()
+    {
+        return m_ButtonSystem.GetNowSelectButton();
     }
 
     /// <summary>
     ///  フェードアウト開始
     /// </summary>
-    public void FadeOutMenu()
+    void FadeOutMenu()
     {
         m_IsFade = true;
         m_Fade.SetDefaultAlpha(0);
@@ -85,6 +101,9 @@ public class MenuState : MonoBehaviour {
         m_Fade.FadeInStart();
     }
 
+    /// <summary>
+    ///  ゲーム終了
+    /// </summary>
     public void Quit()
     {
         Application.Quit();
