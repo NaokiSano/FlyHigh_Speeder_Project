@@ -9,14 +9,12 @@ public class TutorialFlag : MonoBehaviour {
     GamePlayManager m_GamePlayManager;
     ButtonSystem m_ButtonSystem;
 
+    [SerializeField]
+    bool Debag = false;
+
     void Awake()
     {
         m_ButtonSystem = m_GamePlayManager.gameObject.GetComponent<ButtonSystem>();
-    }
-
-    void Start()
-    {
-
     }
 
     void Update()
@@ -37,6 +35,7 @@ public class TutorialFlag : MonoBehaviour {
         }
     }
 
+    // 以下のいずれかが決定されたら自身を無効化
     /// <summary>
     ///  受ける
     /// </summary>

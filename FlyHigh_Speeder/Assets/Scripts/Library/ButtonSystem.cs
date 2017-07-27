@@ -46,7 +46,6 @@ public class ButtonSystem : MonoBehaviour {
     {
         SelectButtons();
         ButtonHighLight();
-        Debug.Log(m_SelectNum);
 	}
 
     /// <summary>
